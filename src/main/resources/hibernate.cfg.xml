@@ -23,5 +23,9 @@
             S!dd#@rt#
         </property>
 
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+
     </session-factory>
 </hibernate-configuration>
