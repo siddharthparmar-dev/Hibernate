@@ -6,8 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "StudentTable")
 public class Student {
+
+    public Student() {
+    }
+
     @Id
     @Column(name="SID",nullable = false)
     private int id;
