@@ -13,6 +13,6 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.highlight_sql">true</property>
-        <mapping class="com.Files.Model.Student"/>
+<!--        <mapping class="com.Files.Model.Student"/>-->
     </session-factory>
 </hibernate-configuration>

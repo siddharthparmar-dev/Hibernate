@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class Main {
+public class Application {
     public static void main(String[] args)
     {
         //step 01 Configuration Object

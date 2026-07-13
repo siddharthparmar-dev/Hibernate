@@ -7,44 +7,42 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class StandardApp {
+public class Update {
     public static void main(String[] args) {
-        Configuration configuration = null;
-        SessionFactory sessionFactory = null;
+
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .addAnnotatedClass(Student.class)
+                .buildSessionFactory();
+
         Session session = null;
         Transaction transaction = null;
         boolean flag = false;
 
-        configuration = new Configuration();
-        configuration.configure();
-
-        sessionFactory = configuration.buildSessionFactory();
-        session = sessionFactory.openSession();
-
-        Student student = new Student();
-        student.setId(5);
-        student.setName("Shiva");
-        student.setCity("Kedarnath");
-
-        try {
+        try{
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
+            Student student = session.get(Student.class, 5);
+            student.setName("Shivam");
+            student.setCity("Dehradun");
+
             session.persist(student);
             flag = true;
         }
-        catch (HibernateException e) {
+        catch(HibernateException e){
             e.printStackTrace();
         }
-        catch (Exception e) {
+        catch (Exception e){
             e.printStackTrace();
         }
         finally {
             if (flag) {
                 transaction.commit();
-            }else  {
+                session.close();
+            }
+            else  {
                 transaction.rollback();
             }
-            session.close();
-            sessionFactory.close();
         }
     }
 }
