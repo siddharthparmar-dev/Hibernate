@@ -1,15 +1,13 @@
 package com.Files.App;
 
 import com.Files.Model.Student;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class Update {
+public class Delete {
     public static void main(String[] args) {
-
         SessionFactory sessionFactory = new Configuration()
                 .configure()
                 .addAnnotatedClass(Student.class)
@@ -17,31 +15,23 @@ public class Update {
 
         Session session = null;
         Transaction transaction = null;
-        boolean flag = false;
 
-        try{
+        try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            Student student = session.get(Student.class, 4);
-            student.setCity("Haldwani");
-
-            session.persist(student);
-            flag = true;
+            Student student = session.getReference(Student.class,5);
+            if (student != null) {
+                session.remove(student);
+            }
         }
-        catch(HibernateException e){
-            e.printStackTrace();
-        }
-        catch (Exception e){
+        catch (Exception e) {
             e.printStackTrace();
         }
         finally {
-            if (flag) {
-                transaction.commit();
-                session.close();
-            }
-            else  {
-                transaction.rollback();
-            }
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
         }
+
     }
 }
