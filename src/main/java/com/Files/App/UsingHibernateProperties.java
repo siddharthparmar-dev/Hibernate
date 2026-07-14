@@ -1,13 +1,13 @@
 package com.Files.App;
 
-import com.Files.Model.Student;
+import com.Files.Model.Employee;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class StandardApp {
+public class UsingHibernateProperties {
     public static void main(String[] args) {
         Configuration configuration = null;
         SessionFactory sessionFactory = null;
@@ -16,17 +16,18 @@ public class StandardApp {
         boolean flag = false;
 
         configuration = new Configuration();
-        configuration.addAnnotatedClass(Student.class);
+
+        configuration.addAnnotatedClass(Employee.class);
         sessionFactory = configuration.buildSessionFactory();
         session = sessionFactory.openSession();
-
-        Student student = new Student();
-        student.setName("Rohan");
-        student.setCity("Jaipur");
-
         try {
             transaction = session.beginTransaction();
-            session.persist(student);
+            Employee employee = new Employee();
+            employee.setEid(2);
+            employee.setEname("Rahul");
+            employee.setEage(29);
+            employee.setEcity("Dehradun");
+            session.persist(employee);
             flag = true;
         }
         catch (HibernateException e) {
@@ -37,12 +38,11 @@ public class StandardApp {
         }
         finally {
             if (flag) {
-                transaction.commit();
-            }else  {
-                transaction.rollback();
-                session.close();
-                sessionFactory.close();
+            transaction.commit();
+            session.close();
+            sessionFactory.close();
             }
         }
+
     }
 }

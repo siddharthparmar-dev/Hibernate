@@ -1,25 +1,22 @@
 package com.Files.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "StudentTable")
 public class Student {
 
     public Student() {
+        System.out.println("Zero param constructor of hibernate");
     }
 
     @Id
-    @Column(name="SID",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "my_Seq",sequenceName = "My_OwnSequence",initialValue = 100,allocationSize=1)
     private int id;
 
-    @Column(name = "SNAME")
     private String name;
 
-    @Column(name = "SCITY")
     private String city;
 
     public int getId() {
