@@ -18,7 +18,7 @@ public class Employee {
 
     @Transient
     private  String Eaddress;
-    
+
     public String getEaddress() {
         return Eaddress;
     }
@@ -62,5 +62,10 @@ public class Employee {
 
     public void setEage(int eage) {
         Eage = eage;
+    }
+
+    @Override
+    public String toString() {
+        return "Student Details: " + "Name: "+ Ename + " id: "+ Eid + " city: " + Ecity + " Age: " + Eage;
     }
 }
