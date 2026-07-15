@@ -11,13 +11,36 @@ public class Student {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "my_Seq",sequenceName = "My_OwnSequence",initialValue = 100,allocationSize=1)
     private int id;
 
     private String name;
 
     private String city;
+
+    public College getCollege() {
+        return college;
+    }
+
+    public void setCollege(College college) {
+        this.college = college;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "College_ID")
+    private College college;
+
+//    @OneToOne
+//    private Laptop laptop;
+//
+//    public Laptop getLaptop() {
+//        return laptop;
+//    }
+//
+//    public void setLaptop(Laptop laptop) {
+//        this.laptop = laptop;
+//    }
 
     public int getId() {
         return id;
