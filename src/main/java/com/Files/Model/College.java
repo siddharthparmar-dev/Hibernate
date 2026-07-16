@@ -21,6 +21,8 @@ public class College {
     public College() {
     }
 
+    // getters setters
+
     public int getId() {
         return id;
     }

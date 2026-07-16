@@ -2,23 +2,36 @@ package com.Files.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
+
 @Entity
 @Table(name = "StudentTable")
 public class Student {
 
-    public Student() {
-        System.out.println("Zero param constructor of hibernate");
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "my_Seq",sequenceName = "My_OwnSequence",initialValue = 100,allocationSize=1)
+    @SequenceGenerator(
+            name = "my_Seq",
+            sequenceName = "My_OwnSequence",
+            initialValue = 100,
+            allocationSize = 1
+    )
     private int id;
 
     private String name;
 
     private String city;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "college_id")
+    private College college;
+
+    public Student() {
+    }
+
+    // getters setters
+}
 //    public College getCollege() {
 //        return college;
 //    }
@@ -41,28 +54,3 @@ public class Student {
 //    public void setLaptop(Laptop laptop) {
 //        this.laptop = laptop;
 //    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-}

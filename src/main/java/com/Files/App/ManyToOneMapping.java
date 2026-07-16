@@ -24,22 +24,22 @@ public class ManyToOneMapping {
             session = sf.openSession();
             tx = session.beginTransaction();
 
-            College college = new College();;
-            college.setName("ADGIPS");
+            College c = new College();
+            c.setName("DTU");
 
             Student s1 = new Student();
-            s1.setName("Sid");
-            s1.setCollege(college);
+            s1.setName("John");
+            s1.setCollege(c);
 
             Student s2 = new Student();
             s2.setName("Rahul");
-            s2.setCollege(college);
+            s2.setCollege(c);
 
-            session.persist(college);
+            Student s3 = new Student();
+            s3.setName("Aman");
+            s3.setCollege(c);
 
-            session.persist(s1);
-            session.persist(s2);
-            flag = true;
+
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
