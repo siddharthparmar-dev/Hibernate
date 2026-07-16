@@ -19,17 +19,17 @@ public class Student {
 
     private String city;
 
-    public College getCollege() {
-        return college;
-    }
-
-    public void setCollege(College college) {
-        this.college = college;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "College_ID")
-    private College college;
+//    public College getCollege() {
+//        return college;
+//    }
+//
+//    public void setCollege(College college) {
+//        this.college = college;
+//    }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "College_ID")
+//    private College college;
 
 //    @OneToOne
 //    private Laptop laptop;
